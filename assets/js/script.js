@@ -1,6 +1,9 @@
+// API key for OpenWeatherMap
 const apiKey = "dc7f919c574b660b6b15490d06db38b6";
+// Retrieve search history from local storage
 let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
+// Event listener for search form
 document
   .querySelector("#searchForm")
   .addEventListener("submit", function (event) {
@@ -16,6 +19,7 @@ document
     }
   });
 
+// Fetch weather data from OpenWeatherMap API
 function getWeather(cityInput) {
   const queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput}&appid=${apiKey}&units=imperial`;
   fetch(queryURL)
@@ -31,6 +35,7 @@ function getWeather(cityInput) {
     });
 }
 
+// Update search history with the new city ans store in local storage
 function recentSearchHistory(city) {
   searchHistory = searchHistory.filter(function (newCity) {
     return newCity !== city;
@@ -40,6 +45,7 @@ function recentSearchHistory(city) {
   localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 }
 
+// Render search history as buttons
 function renderSearchHistory() {
   const recentSearch = document.querySelector("#recentSearch");
   recentSearch.innerHTML = ""; // Clears prior search history
@@ -54,14 +60,17 @@ function renderSearchHistory() {
   });
 }
 
+// Render ans display weather data for cards
 function renderWeather(data) {
   const displayWeather = document.querySelector("#displayWeather");
   displayWeather.innerHTML = "";
 
+  // Filter weather data to get readings at noon each day
   const dayData = data.list.filter(function (filterData) {
     return filterData.dt_txt.includes("12:00:00");
   });
 
+  // Display 5 days of weather data
   dayData.slice(0, 5).forEach(function (day, index) {
     const card = document.createElement("div");
     card.className = "col-lg-2 col-md-4 col-sm-6 mb-3";
@@ -76,6 +85,7 @@ function renderWeather(data) {
       title = "Current";
     }
 
+    // Build the card HTML content
     card.innerHTML = `
     <div class="${cardClass}">
     <h4>${title}</h4>
