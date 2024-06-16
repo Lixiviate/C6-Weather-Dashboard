@@ -22,7 +22,7 @@ This weather dashboard provides a 5-day forecast, displaying detailed weather in
 
 [Deployed GitHub Page]()
 
-![Example]()
+![Example](./assets/images/Example.png)
 
 ## Source Code
 
