@@ -67,11 +67,13 @@ function renderWeather(data) {
     card.className = "col-lg-2 col-md-4 col-sm-6 mb-3";
 
     const weatherDate = new Date(day.dt_txt).toLocaleDateString();
+    const weatherIcon = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
 
     card.innerHTML = `
     <div class="card text-bg-secondary">
     <div class="card-header">${weatherDate}</div>
     <div class="card-body">
+    <img src="${weatherIcon}" alt="Weather icon of a ${day.weather[0].description}"/>
     <h5 class="card-title">${day.weather[0].description}</h5>
     <p class="card-text">
     Temp: ${day.main.temp} °F<br>
