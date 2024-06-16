@@ -20,7 +20,7 @@ This weather dashboard provides a 5-day forecast, displaying detailed weather in
 
 ## Deployed Page
 
-[Deployed GitHub Page]()
+[Deployed GitHub Page](https://lixiviate.github.io/C6-Weather-Dashboard/)
 
 ![Example](./assets/images/Example.png)
 
