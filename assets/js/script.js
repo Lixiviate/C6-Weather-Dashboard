@@ -24,6 +24,7 @@ function getWeather(cityInput) {
     })
     .then(function (data) {
       console.log(data);
+      renderWeather(data);
     })
     .catch(function (error) {
       console.log("Error fetching data: ", error);
@@ -54,12 +55,15 @@ function renderWeather(data) {
   const displayWeather = document.querySelector("displayWeather");
   displayWeather.innerHTML = "";
 
+  const currentDate = new Date();
+  let localDate = currentDate.toLocaleDateString();
+
   const card = document.createElement("div");
   card.className = "col-lg-2 col-md-4 col-sm-6 mb-3";
 
   card.innerHTML = `
 <div class="card text-bg-secondary">
-  <div class="card-header">Header</div>
+  <div class="card-header">${localDate}</div>
   <div class="card-body">
     <h5 class="card-title">Secondary card title</h5>
     <p class="card-text">
@@ -69,6 +73,7 @@ function renderWeather(data) {
   </div>
 </div>
 </div>`;
+  displayWeather.appendChild(card);
 }
 
 renderSearchHistory();
