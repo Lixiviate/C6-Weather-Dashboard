@@ -8,11 +8,13 @@ document
     event.preventDefault();
     const cityInput = document.querySelector("#cityInput").value.trim();
     getWeather(cityInput);
+    recentSearchHistory(cityInput);
+    renderSearchHistory();
     console.log(cityInput);
   });
 
 function getWeather(cityInput) {
-  const queryURL = `api.openweathermap.org/data/2.5/forecast?q=${cityInput}&appid=${apiKey}`;
+  const queryURL = `https:/api.openweathermap.org/data/2.5/forecast?q=${cityInput}&appid=${apiKey}`;
   fetch(queryURL)
     .then(function (response) {
       return response.json();
@@ -36,6 +38,12 @@ function recentSearchHistory(city) {
 
 function renderSearchHistory() {
   const recentSearch = document.querySelector("#recentSearch");
+  searchHistory.forEach(function (city) {
+    const button = document.createElement("button");
+    button.className = "btn btn-light w-100 mb-1";
+    button.textContent = city;
+    recentSearch.appendChild(button);
+  });
 }
 
 renderSearchHistory();
