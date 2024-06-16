@@ -17,7 +17,7 @@ document
   });
 
 function getWeather(cityInput) {
-  const queryURL = `https:/api.openweathermap.org/data/2.5/forecast?q=${cityInput}&appid=${apiKey}`;
+  const queryURL = `https:/api.openweathermap.org/data/2.5/forecast?q=${cityInput}&appid=${apiKey}&units=imperial`;
   fetch(queryURL)
     .then(function (response) {
       return response.json();
@@ -52,28 +52,34 @@ function renderSearchHistory() {
 }
 
 function renderWeather(data) {
-  const displayWeather = document.querySelector("displayWeather");
+  const displayWeather = document.querySelector("#displayWeather");
   displayWeather.innerHTML = "";
 
-  const currentDate = new Date();
-  let localDate = currentDate.toLocaleDateString();
+  const dayData = data.list.filter(function (filterData) {
+    return filterData.dt_txt.includes("12:00:00");
+  });
 
-  const card = document.createElement("div");
-  card.className = "col-lg-2 col-md-4 col-sm-6 mb-3";
+  dayData.slice(0, 5).forEach(function (day) {
+    const card = document.createElement("div");
+    card.className = "col-lg-2 col-md-4 col-sm-6 mb-3";
 
-  card.innerHTML = `
-<div class="card text-bg-secondary">
-  <div class="card-header">${localDate}</div>
-  <div class="card-body">
-    <h5 class="card-title">Secondary card title</h5>
+    const weatherDate = new Date(day.dt_txt).toLocaleDateString();
+
+    card.innerHTML = `
+    <div class="card text-bg-secondary">
+    <div class="card-header">${weatherDate}</div>
+    <div class="card-body">
+    <h5 class="card-title">${day.weather[0].description}</h5>
     <p class="card-text">
-      Some quick example text to build on the card title and make
-      up the bulk of the card's content.
+    Temp: ${day.main.temp} °F<br>
+    Wind: ${day.wind.speed} MPH<br>
+    Humidity: ${day.main.humidity}%<br>
     </p>
-  </div>
-</div>
-</div>`;
-  displayWeather.appendChild(card);
+    </div>
+    </div>
+    </div>`;
+    displayWeather.appendChild(card);
+  });
 }
 
 renderSearchHistory();
