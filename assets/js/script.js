@@ -47,6 +47,9 @@ function renderSearchHistory() {
     const button = document.createElement("button");
     button.className = "btn btn-light w-100 mb-1";
     button.textContent = city;
+    button.onclick = function () {
+      getWeather(city);
+    };
     recentSearch.appendChild(button);
   });
 }
