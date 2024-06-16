@@ -17,7 +17,7 @@ document
   });
 
 function getWeather(cityInput) {
-  const queryURL = `https:/api.openweathermap.org/data/2.5/forecast?q=${cityInput}&appid=${apiKey}&units=imperial`;
+  const queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput}&appid=${apiKey}&units=imperial`;
   fetch(queryURL)
     .then(function (response) {
       return response.json();
@@ -62,15 +62,23 @@ function renderWeather(data) {
     return filterData.dt_txt.includes("12:00:00");
   });
 
-  dayData.slice(0, 5).forEach(function (day) {
+  dayData.slice(0, 5).forEach(function (day, index) {
     const card = document.createElement("div");
     card.className = "col-lg-2 col-md-4 col-sm-6 mb-3";
 
     const weatherDate = new Date(day.dt_txt).toLocaleDateString();
     const weatherIcon = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
 
+    let cardClass = `card text-bg-secondary`;
+    let title = `Future Weather`;
+    if (index === 0) {
+      cardClass = `card text-bg-primary`;
+      title = `Current Weather`;
+    }
+
     card.innerHTML = `
-    <div class="card text-bg-secondary">
+    <div class="${cardClass}">
+    <h4>${title}</h4>
     <div class="card-header">${weatherDate}</div>
     <div class="card-body">
     <img src="${weatherIcon}" alt="Weather icon of a ${day.weather[0].description}"/>
