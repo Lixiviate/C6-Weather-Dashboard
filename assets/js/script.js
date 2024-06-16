@@ -38,7 +38,8 @@ function recentSearchHistory(city) {
 
 function renderSearchHistory() {
   const recentSearch = document.querySelector("#recentSearch");
-  searchHistory.forEach(function (city) {
+  recentSearch.innerHTML = ""; // Clears prior search history
+  searchHistory.slice(0, 7).forEach(function (city) {
     const button = document.createElement("button");
     button.className = "btn btn-light w-100 mb-1";
     button.textContent = city;
