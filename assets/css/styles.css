@@ -1,0 +1,20 @@
+/* General Styles */
+body {
+  background-color: lightseagreen;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: darkblue;
+  color: white;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  margin-bottom: 20px;
+}
+
+header p {
+  font-size: 1.5em;
+}
