@@ -1,5 +1,4 @@
 const apiKey = "dc7f919c574b660b6b15490d06db38b6";
-const cityName = "Denver";
 let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
 document
@@ -51,4 +50,25 @@ function renderSearchHistory() {
   });
 }
 
+function renderWeather(data) {
+  const displayWeather = document.querySelector("displayWeather");
+  displayWeather.innerHTML = "";
+
+  const card = document.createElement("div");
+  card.className = "col-lg-2 col-md-4 col-sm-6 mb-3";
+}
+
 renderSearchHistory();
+
+/* <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+<div class="card text-bg-secondary">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Secondary card title</h5>
+    <p class="card-text">
+      Some quick example text to build on the card title and make
+      up the bulk of the card's content.
+    </p>
+  </div>
+</div>
+</div> */
