@@ -69,11 +69,11 @@ function renderWeather(data) {
     const weatherDate = new Date(day.dt_txt).toLocaleDateString();
     const weatherIcon = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
 
-    let cardClass = `card text-bg-secondary`;
-    let title = `Future Weather`;
+    let cardClass = "card text-bg-secondary";
+    let title = "Future Weather";
     if (index === 0) {
-      cardClass = `card text-bg-primary`;
-      title = `Current Weather`;
+      cardClass = "card text-bg-primary";
+      title = "Current Weather";
     }
 
     card.innerHTML = `
