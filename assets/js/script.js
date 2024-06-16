@@ -6,11 +6,15 @@ document
   .querySelector("#searchForm")
   .addEventListener("submit", function (event) {
     event.preventDefault();
-    const cityInput = document.querySelector("#cityInput").value.trim();
-    getWeather(cityInput);
-    recentSearchHistory(cityInput);
-    renderSearchHistory();
-    console.log(cityInput);
+    const cityInputEl = document.querySelector("#cityInput");
+    const cityInput = cityInputEl.value.trim();
+    if (cityInput) {
+      getWeather(cityInput);
+      recentSearchHistory(cityInput);
+      renderSearchHistory();
+      cityInputEl.value = "";
+      console.log(cityInput);
+    }
   });
 
 function getWeather(cityInput) {
