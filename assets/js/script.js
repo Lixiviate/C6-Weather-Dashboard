@@ -69,10 +69,10 @@ function renderWeather(data) {
     const weatherDate = new Date(day.dt_txt).toLocaleDateString();
     const weatherIcon = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
 
-    let cardClass = "card text-bg-secondary";
+    let cardClass = "card text-bg-secondary text-center";
     let title = "Future Weather";
     if (index === 0) {
-      cardClass = "card text-bg-primary";
+      cardClass = "card text-bg-primary text-center";
       title = "Current Weather";
     }
 
@@ -81,14 +81,15 @@ function renderWeather(data) {
     <h4>${title}</h4>
     <div class="card-header">${weatherDate}</div>
     <div class="card-body">
+    <div class="d-flex justify-content-center">
     <img src="${weatherIcon}" alt="Weather icon of a ${day.weather[0].description}"/>
+    </div>
     <h5 class="card-title">${day.weather[0].description}</h5>
     <p class="card-text">
     Temp: ${day.main.temp} °F<br>
     Wind: ${day.wind.speed} MPH<br>
     Humidity: ${day.main.humidity}%<br>
     </p>
-    </div>
     </div>
     </div>`;
     displayWeather.appendChild(card);
