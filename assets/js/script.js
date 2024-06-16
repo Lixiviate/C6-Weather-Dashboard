@@ -56,11 +56,8 @@ function renderWeather(data) {
 
   const card = document.createElement("div");
   card.className = "col-lg-2 col-md-4 col-sm-6 mb-3";
-}
 
-renderSearchHistory();
-
-/* <div class="col-lg-2 col-md-4 col-sm-6 mb-3">
+  card.innerHTML = `
 <div class="card text-bg-secondary">
   <div class="card-header">Header</div>
   <div class="card-body">
@@ -71,4 +68,7 @@ renderSearchHistory();
     </p>
   </div>
 </div>
-</div> */
+</div>`;
+}
+
+renderSearchHistory();
