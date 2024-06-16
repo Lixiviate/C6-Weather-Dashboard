@@ -70,10 +70,10 @@ function renderWeather(data) {
     const weatherIcon = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
 
     let cardClass = "card text-bg-secondary text-center";
-    let title = "Future Weather";
+    let title = "Forecast";
     if (index === 0) {
       cardClass = "card text-bg-primary text-center";
-      title = "Current Weather";
+      title = "Current";
     }
 
     card.innerHTML = `
